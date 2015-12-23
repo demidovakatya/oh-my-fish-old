@@ -46,6 +46,7 @@ function __fish-spec.run_suite -a suite_name
   for spec in $specs
     emit spec_init $spec
     functions -q before_each; and before_each
+    #omf 'omf-test-plugin-valid' >/dev/null
     eval $spec
     functions -q after_each; and after_each
     emit spec_finished $spec
