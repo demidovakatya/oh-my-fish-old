@@ -5,7 +5,7 @@
 #   Require a plugin:
 #     - Autoload its functions and completions.
 #     - Require bundle dependencies.
-#     - Source its initialization file.
+#     - Source its initialization and key bindings file.
 #     - Emit its initialization event.
 #
 #   If the required plugin has already been loaded, does nothing.
@@ -29,9 +29,10 @@ function require -a name
         end
       end
 
-      source $path/init.fish ^/dev/null;
-        or source $path/$name.fish ^/dev/null;
-        and emit init_$name $path
+      source $path/init.fish ^/dev/null
+      source $path/key_bindings.fish ^/dev/null
+
+      emit init_$name $path
     end
   end
 

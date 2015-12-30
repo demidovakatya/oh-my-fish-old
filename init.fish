@@ -61,4 +61,9 @@ autoload $user_function_path
 # Source custom init.fish file
 source $OMF_CONFIG/init.fish ^/dev/null
 
+# Define key bindings callback function
+function fish_user_key_bindings
+  emit omf-bind-keys
+end
+
 set -g OMF_VERSION "1.0.0"
