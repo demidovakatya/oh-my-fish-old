@@ -119,16 +119,12 @@ function omf -d "Oh My Fish"
       echo (omf::em)"Updating Oh My Fish..."(omf::off)
       if omf.repo.pull $OMF_PATH
         echo (omf::em)"Oh My Fish is up to date."(omf::off)
+        set -gx __omf_pending_update yes
+        refresh
       else
         echo (omf::err)"Oh My Fish failed to update."(omf::off)
         echo "Please open a new issue here → "(omf::em)"github.com/oh-my-fish/oh-my-fish/issues"(omf::off)
       end
-
-      for package in (omf.packages.list --installed)
-        omf.update $package
-      end
-
-      refresh
     case "*"
       echo (omf::err)"$argv[1] option not recognized"(omf::off) 1^&2
       return $OMF_UNKNOWN_OPT

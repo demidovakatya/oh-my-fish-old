@@ -25,4 +25,14 @@ function init -a path --on-event init_omf
   end
 
   autoload $path/cli $path/util
+
+  if set -q __omf_pending_update
+    for package in (omf.packages.list --installed)
+      omf.update $package
+    end
+
+    set -e __omf_pending_update
+    refresh
+  end
+
 end
